@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMR and TDEE calculator</title>
+    <link rel="stylesheet" href="/css/s3.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Health and fitness</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/sivu1.html">Beginner at the gym</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/sivu2.html">Nutrition</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/sivu3.html" style="color: rgb(248, 246, 244); font-weight: bolder;">BMR and TDEE calculator</a>
+            </li>
+                <li>
+                  <hr class="divider">
+                </li>
+                <a class="nav-link" href="/sites/lomake.html">Notes</a>
+                <li class="nav-item">
+                  <a class="nav-link" href="/sites/infoa.html">Information</a>
+                  </li>
+              </ul>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section>
+      <h3>BMR and TDEE calculator</h3> 
+      <p>This is particially from one of my personal projects!</p>
+      <p>BMR = Basic metabolic rate</p> 
+      <p>TDEE = Total daily enegy expenditure</p>
+      <br>
+      <p>This calculator gives a range for BMR and TDEE. The diffenrence from the calculated result it 10% to each direction.</p> 
+      <p>  Your suggested daily calorie intake is also given in a range, from 90% to 110% from the calculated results.</p> 
+      <p>  This is because there can be a lot of individual variance with a suitable calorie intake.</p>
+      <p>Please note that this calculator is directional, and even though it provides a range,</p> 
+      <p>that doesn't automatically quarantee the accuracy of the results. Things such as muscle mass, genetics and potential disorders</p>
+      <p>as well as some medications can affect your BMR and TDEE.</p> <br>
+      <label for="weight" class="short">Your weight in kilograms:</label>
+     
+      <input type="number" id="weight" value="0">
+      <br>
+
+      <label for="height" class="short">Your height in centimeters:</label>
+      
+      <input type="number" id="height" value="0">
+      <br>
+
+      <div class="slidecontainer">
+        <label for="age">Your age:</label><br>
+        <input type="range" min="18" max="100" value="18" step="1" class="slider" id="age1">
+        <br>
+        <p>Age: <span id="a"></span></p>
+      </div>
+          <br>
+      <label for="gender" class="short">Your gender:</label>
+      <br>
+      <input type="radio" id="male" name="gender" value="male"><label for="male">Male</label>
+      
+      <br>
+      <input type="radio" id="female" name="gender" value="female"> <label for="female">Female</label>
+     
+      <br>
+      <label for="activity" class="short">Your activity level:</label>
+      <br>
+      <select id="activity">
+        <option value="1.2">Sedentary (little or no exercise)</option>
+        <option value="1.375">Lightly active (light exercise or sports 1-3 days per week)</option>
+        <option value="1.55">Moderately active (moderate exercise or sports 3-5 days per week)</option>
+        <option value="1.725">Very active (hard exercise or sports 6-7 days per week)</option>
+        <option value="1.9">Super active (very hard exercise or sports, physical job or training twice per day)</option>
+      </select>
+      <p>Your activity level is used to calculate your TDEE.</p>
+      <br><br>
+      <label for="food">Pick your current fitness goal:</label>
+      <br>
+      <select id="food">
+        <option value="0.75">I'm cutting (suggested intake would be 75% of your TDEE).</option>
+        <option value="0.9">I'm doing a light cut (suggested intake would be 90% of your TDEE).</option>
+        <option value="1">I'm maintaining (suggested intake would be the same as your TDEE).</option>
+        <option value="1.1">I'm doing a light bulk (suggested intake would be 10% higher than your TDEE).</option>
+        <option value="1.25">I'm doing a bulk (suggested intake would be 25% higher than your TDEE).</option>
+      </select>
+      <br><br>
+      <button class="btn" id="b" onclick="calculate()">Calculate</button>
+      <p style="color: red;"> <span id="error" style="color: red;"></span></p>
+      <p> <span id="bmr"></span></p>
+      <p> <span id="tdee"></span></p>
+      <p> <span id="intake"></span></p>
+      <br>
+      <p> <span id="info"></span></p>
+      <br>
+    </section>
+  </main>
+
+ 
+
+  <footer>  <div class="text-center">
+    Author: Katariina Hilli <br> © 2023 Copyright:
+     <a style="color: #c5c6c7;" href="https://www.oamk.fi">OAMK</a>
+   </div></footer>
+<script src="/js/js2.js"></script>
+</body>
+</html>
